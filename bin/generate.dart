@@ -21,6 +21,7 @@ void main(List<String> args) async {
   }
 }
 
+
 String toCamelCase(String str, {String? splitter}) {
   var value = str.split("");
   var valueStr = "";
