@@ -1,40 +1,27 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:assets_generator/args_parser.dart';
+import 'package:simple_assets_generator/args_parser.dart';
 
 void main(List<String> args) async {
   if (args.isNotEmpty) {
     var parser = ArgsParser();
     var parsedArgs = parser.parse(args);
     if (parsedArgs.length == 2) {
-      var assetsPath = Directory(
-          "${Directory.current.path}/${parsedArgs['i']}");
+      var assetsPath =
+          Directory("${Directory.current.path}/${parsedArgs['i']}");
       var classBuilder = StringBuffer();
       classBuilder.writeln("class Assets {");
       assetsPath.listSync().forEach((element) {
-        print("found: ${element.path
-            .split("\\")
-            .last}");
+        print("found: ${element.path.split("\\").last}");
         var fieldName =
-            "${element.path
-            .split("\\")
-            .last
-            .split(".")
-            .first}_${element.path
-            .split("\\")
-            .last
-            .split(".")[1]}";
+            "${element.path.split("\\").last.split(".").first}_${element.path.split("\\").last.split(".")[1]}";
         classBuilder.writeln(
-            "  static String ${toCamelCase(
-                fieldName)} = '${parsedArgs['i']}/${element.path
-                .split("\\")
-                .last}';");
+            "  static String ${toCamelCase(fieldName)} = '${parsedArgs['i']}/${element.path.split("\\").last}';");
       });
       classBuilder.writeln("}");
       var file = File(
-          "${Directory.current.path}${Platform
-              .pathSeparator}${parsedArgs['o']}/assets_names.dart");
+          "${Directory.current.path}${Platform.pathSeparator}${parsedArgs['o']}/assets_names.dart");
       file.createSync(recursive: true);
       file.writeAsString(classBuilder.toString());
     }
