@@ -1,16 +1,7 @@
-# assets_generator
 
-A new Flutter project.
+Run in terminal :
 
-## Getting Started
+flutter pub run assets_generator:generate assets/path/files lib/assets_names
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+args[0] - assets directory, in my case assets/path/files
+args[1] - generated file output path, lib/assets_names in my case
