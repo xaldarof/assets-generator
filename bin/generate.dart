@@ -1,26 +1,45 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:assets_generator/args_parser.dart';
+
 void main(List<String> args) async {
   if (args.isNotEmpty) {
-    var assetsPath = Directory("${Directory.current.path}/${args[0]}");
-    var classBuilder = StringBuffer();
-    classBuilder.writeln("class AssetNames {");
-    assetsPath.listSync().forEach((element) {
-      print("found: ${element.path.split("\\").last}");
-      var fieldName =
-          "${element.path.split("\\").last.split(".").first}_${element.path.split("\\").last.split(".")[1]}";
-      classBuilder.writeln(
-          "  static String ${toCamelCase(fieldName)} = '${args[0]}/${element.path.split("\\").last}';");
-    });
-    classBuilder.writeln("}");
-    var file = File(
-        "${Directory.current.path}${Platform.pathSeparator}${args[1]}/assets_names.dart");
-    file.createSync(recursive: true);
-    file.writeAsString(classBuilder.toString());
+    var parser = ArgsParser();
+    var parsedArgs = parser.parse(args);
+    if (parsedArgs.length == 2) {
+      var assetsPath = Directory(
+          "${Directory.current.path}/${parsedArgs['i']}");
+      var classBuilder = StringBuffer();
+      classBuilder.writeln("class Assets {");
+      assetsPath.listSync().forEach((element) {
+        print("found: ${element.path
+            .split("\\")
+            .last}");
+        var fieldName =
+            "${element.path
+            .split("\\")
+            .last
+            .split(".")
+            .first}_${element.path
+            .split("\\")
+            .last
+            .split(".")[1]}";
+        classBuilder.writeln(
+            "  static String ${toCamelCase(
+                fieldName)} = '${parsedArgs['i']}/${element.path
+                .split("\\")
+                .last}';");
+      });
+      classBuilder.writeln("}");
+      var file = File(
+          "${Directory.current.path}${Platform
+              .pathSeparator}${parsedArgs['o']}/assets_names.dart");
+      file.createSync(recursive: true);
+      file.writeAsString(classBuilder.toString());
+    }
   }
 }
-
 
 String toCamelCase(String str, {String? splitter}) {
   var value = str.split("");
