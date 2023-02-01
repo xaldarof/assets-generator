@@ -23,7 +23,7 @@ void main(List<String> args) async {
 
     var assetsPath = Directory("${Directory.current.path}/${parsedArgs['i']}");
     var classBuilder = StringBuffer();
-    classBuilder.writeln("class $className {");
+    classBuilder.writeln("abstract class $className {");
     assetsPath.listSync().forEach((element) {
       if(extensions.containsKey(element.path.split(".").last) || extensions.isEmpty) {
         _writeToClass(element, classBuilder, parsedArgs['i']);

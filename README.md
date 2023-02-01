@@ -9,3 +9,17 @@ $ flutter pub run simple_assets_generator:generate -i assets/path/files -o lib -
 [optional] [-n] generated class name
 
 [optional] [-ext] generate only if extension in ends with given extensions
+
+
+
+```dart
+class TxtFiles {
+  static String fileTxt = 'assets/path/files/file.txt';
+}
+```
+
+```dart
+class Images {
+  static String fileTxt = 'assets/path/files/logo.png';
+}
+```
