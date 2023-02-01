@@ -11,6 +11,7 @@ $ flutter pub run simple_assets_generator:generate -i assets/path/files -o lib -
 [optional] [-ext] generate only if extension in ends with given extensions
 
 
+[Open pub.dev](https://pub.dev/packages/simple_assets_generator)
 
 ```dart
 class TxtFiles {
