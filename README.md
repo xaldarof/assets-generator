@@ -10,7 +10,7 @@ Run in terminal :
 
 [optional] `-fn` generated file name
 
-[optional] `-ext` generate only if extension in ends with given extensions
+[optional] `-ext` generate only if extension ends with given extensions
 
 
 [Open pub.dev](https://pub.dev/packages/simple_assets_generator)
