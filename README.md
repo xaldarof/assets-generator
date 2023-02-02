@@ -1,6 +1,6 @@
 Run in terminal :
 
-$ flutter pub run simple_assets_generator:generate -i assets/path/files -o lib -n Images -ext jpeg,png -fn asset_names
+`flutter pub run simple_assets_generator:generate -i assets/path/files -o lib -n Images -ext jpeg,png -fn asset_names`
 
 [required] [-i] assets directory, in my case assets/path/files
 
