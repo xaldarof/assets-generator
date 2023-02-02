@@ -9,12 +9,17 @@ void main(List<String> args) async {
     var parser = ArgsParser();
     var parsedArgs = parser.parse(args);
     var className = "Assets";
+    var fileName = "assets";
     var extensions = {};
-    if(parsedArgs.containsKey("n")) {
+    if (parsedArgs.containsKey("n")) {
       className = parsedArgs['n'];
     }
 
-    if(parsedArgs.containsKey('ext')) {
+    if (parsedArgs.containsKey("fn")) {
+      fileName = parsedArgs['fn'];
+    }
+
+    if (parsedArgs.containsKey('ext')) {
       var ext = parsedArgs['ext'].toString().split(",");
       for (var element in ext) {
         extensions[element] = element;
@@ -25,32 +30,33 @@ void main(List<String> args) async {
     var classBuilder = StringBuffer();
     classBuilder.writeln("abstract class $className {");
     assetsPath.listSync().forEach((element) {
-      if(extensions.containsKey(element.path.split(".").last) || extensions.isEmpty) {
+      if (extensions.containsKey(element.path.split(".").last) ||
+          extensions.isEmpty) {
         _writeToClass(element, classBuilder, parsedArgs['i']);
       }
     });
     classBuilder.writeln("}");
-    _writeToFile(_createFile(parsedArgs['o']), classBuilder);
+    _writeToFile(_createFile(fileName, parsedArgs['o']), classBuilder);
   }
 }
 
-File _createFile(String fileName) {
+File _createFile(String fileName, String path) {
   var file = File(
-      "${Directory.current.path}${Platform.pathSeparator}$fileName/assets_names.dart");
+      "${Directory.current.path}${Platform.pathSeparator}$path/$fileName.dart");
   file.createSync(recursive: true);
   return file;
 }
 
-void _writeToFile(File file,StringBuffer classBuilder) {
+void _writeToFile(File file, StringBuffer classBuilder) {
   file.writeAsString(classBuilder.toString());
 }
-void _writeToClass(FileSystemEntity element,StringBuffer classBuilder,String inputPath) {
+
+void _writeToClass(
+    FileSystemEntity element, StringBuffer classBuilder, String inputPath) {
   var fieldName =
-      "${p.basename(element.path).split(".")[0]}_${p.basename(
-      element.path).split(".")[1]}";
+      "${p.basename(element.path).split(".")[0]}_${p.basename(element.path).split(".")[1]}";
   classBuilder.writeln(
-      "  static String ${_toCamelCase(fieldName)} = '$inputPath/${p
-          .basename(element.path)}';");
+      "  static String ${_toCamelCase(fieldName)} = '$inputPath/${p.basename(element.path)}';");
 }
 
 String _toCamelCase(String str, {String? splitter}) {
