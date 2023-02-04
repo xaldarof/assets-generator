@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:simple_assets_generator/args_parser.dart';
 import 'package:path/path.dart' as p;
+import 'package:simple_assets_generator/strings_ext.dart';
 
 void main(List<String> args) async {
   if (args.isNotEmpty) {
@@ -56,25 +57,9 @@ void _writeToClass(
   var fieldName =
       "${p.basename(element.path).split(".")[0]}_${p.basename(element.path).split(".")[1]}";
   classBuilder.writeln(
-      "  static String ${_toCamelCase(fieldName)} = '$inputPath/${p.basename(element.path)}';");
+      "  static String ${fieldName.toCamelCase()} = '$inputPath/${p.basename(element.path)}';");
 }
 
-String _toCamelCase(String str, {String? splitter}) {
-  var value = str.split("");
-  var valueStr = "";
-  for (int i = 0; i < value.length; i++) {
-    if (value[i] == (splitter ?? "_")) {
-      if (i < value.length) {
-        value[i + 1] = value[i + 1].toUpperCase();
-        value.removeAt(i);
-      }
-    }
-  }
-  for (var element in value) {
-    valueStr += element;
-  }
-  return valueStr;
-}
 
 void printInfo(String info) {
   log('\u001b[32measy localization: $info\u001b[0m');
