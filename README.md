@@ -23,6 +23,6 @@ class TxtFiles {
 
 ```dart
 class Images {
-  static String fileTxt = 'assets/path/files/logo.png';
+  static String logoPng = 'assets/path/files/logo.png';
 }
 ```
