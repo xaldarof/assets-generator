@@ -10,7 +10,7 @@ Run in terminal :
 
 [optional] `-fn` generated file name
 
-[optional] `-ext` generate only if file extension in given extensions
+[optional] `-ext` generate only files with given extensions
 
 
 [Open pub.dev](https://pub.dev/packages/simple_assets_generator)
@@ -23,6 +23,6 @@ class TxtFiles {
 
 ```dart
 class Images {
-  static String fileTxt = 'assets/path/files/logo.png';
+  static String logoPng = 'assets/path/files/logo.png';
 }
 ```
