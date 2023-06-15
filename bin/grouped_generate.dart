@@ -43,7 +43,7 @@ void main(List<String> args) async {
         final nameAndExt = p.basename(element.path).split(".");
         final fieldName = "${nameAndExt[1]}_${nameAndExt[0]}".toCamelCase();
         classBuilder.writeln(
-            """  static String $fieldName = "${(element.path).replaceAll("\\", "/")}"; """);
+            """  static String $fieldName = "${"${parsedArgs['i']}/${p.basename(element.path)}".replaceAll("\\", "/")}"; """);
       }
       classBuilder.writeln("}\n\n");
     });
