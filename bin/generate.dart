@@ -57,7 +57,7 @@ void _writeToClass(
   var fieldName =
       "${p.basename(element.path).split(".")[0]}_${p.basename(element.path).split(".")[1]}";
   classBuilder.writeln(
-      "  static String ${fieldName.toCamelCase()} = '$inputPath/${p.basename(element.path)}';");
+      "  static String ${fieldName.toCamelCase()} = '$inputPath${inputPath.endsWith("/") ? "" : "/"}${p.basename(element.path)}';");
 }
 
 
