@@ -17,7 +17,7 @@ Run in terminal :
 
 ```dart
 class TxtFiles {
-  static String fileTxt = 'assets/path/files/file.txt';
+  static String fileTxt = 'assets/path/files/text1.txt';
 }
 ```
 
