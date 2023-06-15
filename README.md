@@ -1,6 +1,9 @@
 Run in terminal :
 
-`flutter pub run simple_assets_generator:generate -i assets/path/files -o lib -n Images -ext jpeg,png -fn asset_names`
+`flutter pub run simple_assets_generator:generate -i assets/path/files -o lib -n Images -ext jpeg,png -fn assets_file`
+
+
+`flutter pub run simple_assets_generator:grouped_generate -i assets/path/files -o lib -n Images -fn assets_file`
 
 [required] `-i` assets directory, in my case assets/path/files
 
@@ -10,7 +13,7 @@ Run in terminal :
 
 [optional] `-fn` generated file name
 
-[optional] `-ext` generate only files with given extensions
+[optional] `-ext` generate only files with given extensions (not supported for grouped generation)
 
 
 [Open pub.dev](https://pub.dev/packages/simple_assets_generator)
